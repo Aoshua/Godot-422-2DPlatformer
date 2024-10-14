@@ -1,6 +1,9 @@
 extends Actor
 
 @export var stomp_impulse = 500.0
+const JUMP_FORCE = 1100.0
+const MOVE_SPEED = 800.0
+const GRAVITY = 3000.0
 
 func _on_enemy_detector_area_entered(area: Area2D) -> void:
 	velocity = calculate_stomp_velocity(velocity, stomp_impulse)
@@ -9,11 +12,19 @@ func _on_enemy_detector_body_entered(body: Node2D) -> void:
 	queue_free()
 	
 func _physics_process(delta: float) -> void:
-	var is_jump_interrupted = Input.is_action_just_released("jump") and velocity.y < 0.0
-	var horizontal_input = $CanvasLayer/Joystick.get_joystick_dir()
-	var vertical_input = -1.0 if Input.is_action_just_pressed("jump") and is_on_floor() else 1.0
-	var direction = Vector2(horizontal_input.x, vertical_input)
-	velocity = calculate_move_velocity(velocity, direction, is_jump_interrupted)
+	# Get horizontal input from joystick (separate from jump logic)
+	var horizontal_input = $CanvasLayer/Joystick.get_joystick_dir().x
+	# If the player is on the floor and the jump button is pressed, set vertical velocity for jump
+	if is_on_floor() and Input.is_action_just_pressed("jump"):
+		velocity.y = -JUMP_FORCE
+	# If the jump button is released while moving up (jump interrupted)
+	if Input.is_action_just_released("jump") and velocity.y < 0.0:
+		velocity.y *= 0.5  # Reduce upward velocity, creating a "jump cut" effect
+	# Calculate horizontal velocity based on input, and retain the previous vertical velocity
+	velocity.x = horizontal_input * MOVE_SPEED
+	# Apply gravity while in the air
+	if not is_on_floor():
+		velocity.y += GRAVITY * delta
 	move_and_slide()
 
 func get_direction() -> Vector2:
