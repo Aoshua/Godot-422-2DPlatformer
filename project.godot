@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Godot4222DPlatformer"
+config/name="Green Square"
 run/main_scene="res://src/levels/level_1.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
+config/icon="res://icon.png"
 
 [input]
 
@@ -49,3 +50,4 @@ move_left={
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
