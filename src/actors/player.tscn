@@ -66,3 +66,6 @@ metadata/_edit_use_anchors_ = true
 [node name="JumpButton" parent="PlayerControls/Control2" instance=ExtResource("4_jkb2p")]
 position = Vector2(-159, -160)
 action = "jump"
+
+[connection signal="area_entered" from="EnemyDetector" to="." method="_on_enemy_detector_area_entered"]
+[connection signal="body_entered" from="EnemyDetector" to="." method="_on_enemy_detector_body_entered"]
