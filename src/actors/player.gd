@@ -10,7 +10,9 @@ func _on_enemy_detector_body_entered(body: Node2D) -> void:
 	
 func _physics_process(delta: float) -> void:
 	var is_jump_interrupted = Input.is_action_just_released("jump") and velocity.y < 0.0
-	var direction = $CanvasLayer/Joystick.get_joystick_dir()
+	var horizontal_input = $CanvasLayer/Joystick.get_joystick_dir()
+	var vertical_input = -1.0 if Input.is_action_just_pressed("jump") and is_on_floor() else 1.0
+	var direction = Vector2(horizontal_input.x, vertical_input)
 	velocity = calculate_move_velocity(velocity, direction, is_jump_interrupted)
 	move_and_slide()
 

@@ -13,6 +13,7 @@ texture_normal = ExtResource("1_g5ti6")
 shape = SubResource("CircleShape2D_a1pa8")
 script = ExtResource("2_k7vjl")
 
-[node name="SmallHandle" type="Sprite2D" parent="."]
+[node name="Knob" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(178, 178)
 texture = ExtResource("2_w43c8")
