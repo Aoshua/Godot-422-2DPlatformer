@@ -13,7 +13,7 @@ func _on_enemy_detector_body_entered(body: Node2D) -> void:
 	
 func _physics_process(delta: float) -> void:
 	# Get horizontal input from joystick (separate from jump logic)
-	var horizontal_input = $CanvasLayer/Joystick.get_joystick_dir().x
+	var horizontal_input = %Joystick.get_joystick_dir().x
 	# If the player is on the floor and the jump button is pressed, set vertical velocity for jump
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y = -JUMP_FORCE

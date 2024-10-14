@@ -38,11 +38,21 @@ position = Vector2(0, -44.5)
 shape = SubResource("RectangleShape2D_5tgo8")
 debug_color = Color(0.903486, 0.198293, 0.588252, 0.42)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="Joystick" parent="CanvasLayer" instance=ExtResource("3_ca37w")]
-position = Vector2(20, 458)
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
 
-[node name="JumpButton" parent="CanvasLayer" instance=ExtResource("4_jkb2p")]
-position = Vector2(971, 471)
+[node name="Joystick" parent="Control/CanvasLayer" instance=ExtResource("3_ca37w")]
+unique_name_in_owner = true
+position = Vector2(3, 469)
+
+[node name="JumpButton" parent="Control/CanvasLayer" instance=ExtResource("4_jkb2p")]
+position = Vector2(1001, 496)
 action = "jump"
