@@ -1,7 +1,7 @@
 extends Actor
 
 @export var stomp_impulse = 500.0
-const JUMP_FORCE = 1100.0
+const JUMP_FORCE = 1300.0
 const MOVE_SPEED = 800.0
 const GRAVITY = 3000.0
 
