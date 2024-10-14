@@ -7,7 +7,7 @@ extends TouchScreenButton
 var stick_center: Vector2 = Vector2.ZERO
 var touched: bool = false
 var touch_index: int = -1  # Track which touch is controlling the joystick
-var joystick_diameter: int = 200  # Make the interactable area bigger
+var joystick_diameter: int = 300  # Make the interactable area bigger
 
 func _ready():
 	# Set transparency and the center of the joystick
